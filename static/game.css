@@ -1,0 +1,129 @@
+h1 {
+	color: #d3a126;
+	font-size: 1.1em;
+	margin:0px;
+}
+
+#rounded_left {
+	margin:0px;
+	width:520px;
+}
+
+#rounded_right {
+	margin:0px;
+	width:460px;
+	float: right;
+}
+
+#about_user {
+	padding:10px;
+	margin:0px;
+	width:500px;
+	background: #67a7e3;
+	color:white;
+	font-family: tahoma;
+	font-size:1.6em;
+	line-height:1.6em;
+}
+
+#RightPanel {
+	padding: 10px;
+	margin: 0px;
+	background: #ffde46;
+	width:440px;
+	color:white;
+	font-family: tahoma;
+	font-size:1.6em;
+	line-height:1.6em;
+}
+
+#RightPanel a {color:white;}
+#RightPanel a.visited {color:white;}
+
+.right {text-align:right;}
+
+.pointer {cursor:pointer;padding-top:15px;}
+
+img {vertical-align:middle;}
+
+div.inline{display:inline;}
+
+#modal_dialog {
+	padding:20px;
+	position:absolute;
+	left: 200px;
+	top: 200px;
+	width:560px;
+	height:100px;
+	text-align:center;
+	background:black;
+	border: 1px solid white;
+	color:white;
+	font-family: tahoma;
+	font-size:1.4em;
+	display: none;
+}
+
+#dialog_progressbar {
+	padding:1px;
+	border: 1px solid white;
+	color:white;
+	text-align:left;
+}
+
+#dialog_slider {
+	background:white;
+	width:556px;
+	display: none;
+}
+
+#alert_dialog {
+	padding:20px;
+	position:absolute;
+	left: 200px;
+	top: 200px;
+	width:560px;
+	height:100px;
+	text-align:center;
+	background:red;
+	border: 1px solid white;
+	color:white;
+	font-family: tahoma;
+	font-size:2em;
+	display: none;
+}
+
+#alert_text {
+	font-size:0.8em;
+}
+
+#alert_progressbar {
+	height:1px;
+}
+
+#alert_slider {
+	background:red;
+	height:1px;
+	display: none;
+}
+
+#message_dialog {
+	padding:20px;
+	position:absolute;
+	left: 200px;
+	top: 200px;
+	width:560px;
+	text-align:center;
+	background:white;
+	border: 1px solid black;
+	color:black;
+	font-family: tahoma;
+	font-size:1.4em;
+	display: none;
+}
+
+#message_slider {
+	background:white;
+	height:1px;
+	display: none;
+}

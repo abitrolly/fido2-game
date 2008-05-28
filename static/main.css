@@ -1,0 +1,102 @@
+html,body {
+    margin:0px;
+    padding:0px;
+    width:100%;
+    color:black;
+    font-size:13px;
+    text-decoration:none;
+    font-family:arial, sans-serif;
+	background: white;
+}
+
+h1 {
+	color: #d3a126;
+	font-size: 1.6em;
+}
+
+p {
+	line-height: 1.4em;
+}
+
+img {
+	border: 0px none;
+}
+
+a {
+	color:blue;
+	font-family:arial,sans-serif;
+	text-decoration:none;
+}
+a:link {
+	color:blue;
+}
+a:visited {
+	color:blue;
+}
+
+.red {
+	color: red;
+}
+
+.green {
+	color: green;
+} 
+
+.help_text {
+	font-size: 13px;
+	color: #333;
+	line-height: auto*
+}
+
+#Header {
+	color: white;
+	padding:5px;
+	margin: 0px;
+	background:#67a7e3;
+	text-align:center;
+	font-weight:bold;
+}
+
+#Header a {
+	color: white;
+}
+
+b.nifty {
+	height:1px;
+	display:block;
+	overflow:hidden;
+}
+
+b.yellow {
+	background:#ffde46;
+}
+
+b.blue {
+	background:#95aee1;
+}
+
+b.darkblue {
+	background:#516a9c;
+}
+
+b.margin1 {margin: 0 1px;}
+
+b.margin2 {margin: 0 2px;}
+
+.black {color:black;}
+
+a.big_button {
+	display:block;
+	font-size:26px; /*2em;*/
+	line-height:60px;
+	color: #d3a126;
+	letter-spacing: 0.1em;
+}
+
+a:visited.big_button {
+	color: #d3a126;
+}
+
+a:hover.big_button {
+	color: white;
+}

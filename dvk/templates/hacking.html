@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{user.nickname}}
+{% endblock %}
+
+{% block extrahead%}
+<link rel="stylesheet" href="/static/game.css" />
+<script type='text/javascript' src='/static/game.js'></script>
+
+<style>
+	#rounded_left  {width:50px;}
+	#about_user    {width:30px;}
+	#about_user a {color:white;}
+	#about_user a.visited {color:white;}
+	
+	#rounded_right {width:930px;}
+	#RightPanel    {width:910px;}
+	
+	#modal_dialog {
+		text-align:left;
+		background:black;
+		border: 1px solid white;
+		color:white;
+		height:auto;
+		font-size:1.5em;
+	}
+	
+	#dialog_title {font-size:1.2em;color:red}
+	
+	#dialog_footer {text-align:right;font-size:0.8em;}
+	
+	a.big_button {color:red;font-size:19px;padding-left:20px;}
+	a:visited.big_button {color:red;}
+	a:hover.big_button {color: white;}
+</style>
+
+<script type='text/javascript'>
+	function Attack(id) {
+		$("#modal_dialog").html('Подключение к удалённому хосту... <img src="/static/busy.gif" alt="loading" />');
+		$("#modal_dialog").show();
+		$.post('/attack/'+id+'/', {}, function(data){$("#modal_dialog").html(data)});
+		
+	}
+	
+	function Hacking(id, what) {
+		$.post('/ajax_query/hacking/', {'id': id, 'what': what}, function(data){message_bar(data)});
+		$("#hack_"+what).html("");
+	}
+</script>
+{% endblock %}
+
+
+{% block header %}
+	{% include 'game_menu2.html' %}
+{% endblock %}
+
+{% block content %}
+<div style="width:1000px;margin:auto;">
+<div id="modal_dialog">
+	Подключение к удалённому хосту... <img src="/static/busy.gif" alt="loading" />
+</div>
+{% include "dialogs/message.html" %}
+	<br />
+	<div id="rounded_right">
+		<b class="nifty yellow margin2"></b>
+		<b class="nifty yellow margin1"></b>
+		<div id="RightPanel">
+			<h1>Взлом других игроков</h1>
+			{% if denied %}
+				<p>
+				<span class="black">Статус:</span> {{game.status_str}}
+				<span class="black">- </span>
+				<span class="red">У вас маловато опыта для взлома!</span>
+				</p>
+				<p>
+				Необходимо иметь уровень не ниже "Младший Программист"
+				</p>
+			{% else %}
+				<p>
+				<table width=100% style="font-size:0.8em">
+				{% for item in targets %}
+					<tr>
+					<td class="black">
+						{{item.user.nickname}}
+					</td>
+					<td>
+						{{item.status_str}}
+					</td>
+					<td class="black">
+						ОС: {{item.os}}
+					</td>
+					<td class="red">
+						{{item.get_ip}}
+					</td>
+					<td >
+						<a href="javascript:Attack('{{item.key}}')" class="attack_it">
+							[Атаковать!]
+						</a>
+					</td>
+				</tr>
+				{% endfor %}
+				</table>
+				</p>
+			{% endif %}
+		</div>
+		<b class="nifty yellow margin1"></b>
+		<b class="nifty yellow margin2"></b>
+	</div>
+	
+	<div id="rounded_left">
+		<b class="nifty blue margin2"></b>
+		<b class="nifty blue margin1"></b>
+		<div id="about_user">
+			<a href="/game/">
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			</a>
+		</div>
+		<b class="nifty darkblue margin1"></b>
+		<b class="nifty darkblue margin2"></b>
+	</div>
+</div>
+{% endblock %}

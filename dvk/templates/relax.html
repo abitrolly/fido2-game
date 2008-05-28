@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Развлечения
+{% endblock %}
+
+{% block extrahead%}
+<link rel="stylesheet" href="/static/game.css" />
+<script type='text/javascript' src='/static/game.js'></script>
+
+<style>
+	#rounded_left  {width:50px;}
+	#about_user    {width:30px;}
+	#about_user a {color:white;}
+	#about_user a.visited {color:white;}
+	
+	#rounded_right {width:930px;}
+	#RightPanel    {width:910px;}
+</style>
+
+<script type='text/javascript'>
+	//-------------------------------------------------------------------------
+	function relax(cost, title) {
+		if (money < cost) {
+			alert_bar("Так хотелось " + title, "Да только денег не хватило :-(");
+			return;
+		}
+		
+		$.post("/ajax_query/relax/", {"cost": cost}, function(data){
+			$("#fun_str").html(data);
+		});
+	}
+</script>
+{% endblock %}
+
+
+{% block header %}
+	{% include 'game_menu2.html' %}
+{% endblock %}
+
+{% block content %}
+<div style="width:1000px;margin:auto;">
+	{% include "dialogs/alert.html" %}
+	<br />
+	
+	<div id="rounded_right">
+		<b class="nifty yellow margin2"></b>
+		<b class="nifty yellow margin1"></b>
+		<div id="RightPanel">
+			<h1>Кто не умеет расслаблятся - не умеет работать. Верно?</h1>
+			<div class="inline" id="fun_str">
+				{% include "ajax/relax_data.html" %}
+			</div>
+			<p>
+			<table width=100%>
+			{% for item in items %}
+				<tr>
+					<td class="black">
+						{{item.title}}
+					</td>
+					<td>
+						${{item.cost}}
+					</td>
+					<td>
+						<a href='javascript:relax({{item.cost}}, "{{item.title}}")' status="">
+							Поехали!
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+			</table>
+			</p>
+		</div>
+		<b class="nifty yellow margin1"></b>
+		<b class="nifty yellow margin2"></b>
+	</div>
+	
+	<div id="rounded_left">
+		<b class="nifty blue margin2"></b>
+		<b class="nifty blue margin1"></b>
+		<div id="about_user">
+			<a href="/game/">
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			</a>
+		</div>
+		<b class="nifty darkblue margin1"></b>
+		<b class="nifty darkblue margin2"></b>
+	</div>
+</div>
+{% endblock %}

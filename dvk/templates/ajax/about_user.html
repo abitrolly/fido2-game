@@ -1,0 +1,51 @@
+<script type='text/javascript'>
+	var money = {{game.money}};
+	var salary = {{game.job_salary}};
+	var hours_worked = 0;
+	var today_is = {{game.game_day}};
+	var pc = "{{game.pc}}";
+	var pc_power = {{game.pc_power}};
+	var hdd_free = {{game.hdd_free}};
+	var xp = {{game.xp}}
+
+{% if viruses %}
+	alert_bar("{{viruses_title}}", "{{viruses_text}}");
+{% endif %}
+
+{% if message %}
+	message_bar('{{message}}');
+{% endif %}
+</script>
+
+{{user.nickname}}
+<br />
+<span class="black">Статус:</span> {{game.status}}
+<span class="black">xp:</span> {{game.xp}}
+<br />
+<span class="black">Репутация:</span> <span class="{{game.reputation_color}}">{{game.reputation_str}}</span>
+<br />
+<span class="black">Компьютер:</span> {{game.pc}}
+<span class="black">Сеть:</span> {{game.lan}}
+<br />
+<span class="black">Винт:</span> {{game.hdd}} {{game.hdd_free}}Mb free
+<br />
+<span class="black">ОС:</span> {{game.os}} (занимает {{game.os_size}}Mb)
+{% if game.firewall %}
+	<br />
+	<span class="black">Фаервол: </span> {{game.firewall}}
+{% endif %} 
+<br />
+<span class="black">Софт:</span> {{game.soft}}{% if game.antivirus %}, {{game.antivirus}} {% endif %} 
+<br />
+{{game.cool_soft_str}} <span class="black">КРУТОГО СОФТА</span>
+
+<br />
+<span class="black">Работа: </span> {{game.job_str}} <span class="black">з/п</span> ${{game.job_salary}}
+<br />
+<span class="black">Всего денег: </span> ${{game.money}}
+<br />
+<span class="black">Настроение: </span> {{game.fun_str}}
+{% if game.games %}
+<br />
+<span class="black">Любимая игра: </span> {{game.games}}
+{% endif %}

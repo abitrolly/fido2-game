@@ -1,0 +1,16 @@
+.jqmWindow {
+    margin:0px;
+    padding: 10px;
+    position: absolute;
+	left: 200px;
+	top: 200px;
+    width: 600px;
+    height:150px;
+    
+    background-color: white;
+    color: #333;
+    border: 1px solid black;
+    font-size: 1.4em;
+}
+
+.jqmOverlay { background-color: #000; }

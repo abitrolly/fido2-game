@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Здравствуйте!
+{% endblock %}
+
+{% block extrahead%}
+<link rel="stylesheet" href="/static/index.css" />
+{% endblock %}
+
+{% block content %}
+<div style="width:940px;margin:auto;">
+	<br />
+	<br />
+	<div id="rounded_right">
+		<b class="nifty yellow margin2"></b>
+		<b class="nifty yellow margin1"></b>
+		<div id="RightPanel">
+			<h1>
+				↓ CONNECT 2400?
+			</h1>
+			
+			<a class="big_button" href="/new_game/">
+				► НАЧАТЬ НОВУЮ ИГРУ
+			</a>
+			
+			<a class="big_button" href="/game/">
+				► ПРОДОЛЖИТЬ ИГРУ
+			</a>
+			
+			<a class="big_button" href="/top/">
+				► ЗАЛ БОЕВОЙ СЛАВЫ
+			</a>
+		</div>
+		<b class="nifty yellow margin1"></b>
+		<b class="nifty yellow margin2"></b>
+	</div>
+	
+	<div id="rounded_left">
+		<b class="nifty blue margin2"></b>
+		<b class="nifty blue margin1"></b>
+		<div id="LeftPanel">
+			<h1>
+				↓ Куда я попал?
+			</h1>
+			<p>
+			Вашему вниманию предлагается симулятор жизни компьютерщика. 
+			Ваша  цель - пройти путь от Юзера до Сетевого Координатора.</p> 
+			<p>
+			Продвижение  по  карьерной  лестнице обеспечивает опыт и развитие 
+			компьютерных навыков. Ключевые значения опыта - 32, 64, 128, 256 и 1024.
+			На опыт влияют установка крутого софта и закачка его в сеть, установка нового железа и рабочий стаж.
+			</p> 
+			<p>
+			Репутация отражает отношение к социуму, занятие общественно полезным делом повышает репутацию. 
+			И наоборот, когда вы занимаетесь взломом репутация уходит в минус.
+			Репутация не должна падать ниже -16, иначе игрушка грохнет вам винт (шутка! ;))</p>
+			<p>
+			Разработка: <a href="http://pythondevside.com/">Владимир Сергеев (diadya_vova)</a>
+			<br />
+			Идея оригинальной игры "ФИДО" - <a href="http://yun.complife.ru">Yuri Nesterenko (YuN)</a>
+			</p>
+		</div>
+		<b class="nifty darkblue margin1"></b>
+		<b class="nifty darkblue margin2"></b>
+	</div>
+</div>
+{% endblock %}

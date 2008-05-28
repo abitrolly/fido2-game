@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Файлообмен
+{% endblock %}
+
+{% block extrahead%}
+<link rel="stylesheet" href="/static/game.css" />
+<script type='text/javascript' src='/static/game.js'></script>
+
+<style>
+	#rounded_left  {width:50px;}
+	#about_user    {width:30px;}
+	#about_user a {color:white;}
+	#about_user a.visited {color:white;}
+	
+	#rounded_right {width:930px;}
+	#RightPanel    {width:910px;}
+	
+	#modal_dialog {
+		height:auto;
+		font-size:1.4em;
+		background:white;
+		border: 1px solid blue;
+		color:black;	
+	}
+	#dialog_progressbar {border: 1px solid blue;}
+	#dialog_slider {background:blue;}
+</style>
+
+<script type='text/javascript'>
+    var count = 0;
+	var inside = false;
+	
+    //-------------------------------------------------------------------------
+	function progress_bar2(title, footer) {
+		$("#dialog_title").html(title);
+		$("#dialog_footer").html(footer);
+		$("#modal_dialog").show();
+		$("#dialog_slider").animate({width: "show"}, "slowest", function(){inside = false;$("#dialog_slider").hide(); $("#modal_dialog").hide();});
+	}
+	
+	//-------------------------------------------------------------------------
+	function connect_p2p(direction, id, title) {
+		var text = "";
+		count = count + 1;
+		if (count > 5) {
+		    alert_bar("Ошибка соединения!", "Сервер " + title + " временно недоступен.");
+			return;
+        }
+        
+        if (inside) {
+           return;
+        }
+        
+		$.post("/ajax_query/get_p2p_text/", {"direction": direction}, function(data){
+			text = data;
+			if (text == "error") {
+				alert_bar("Ошибка соединения!", "Сервер " + title + " временно недоступен.");
+				return;
+			}
+			if (direction=="upload") {
+			    inside = true;
+				progress_bar2("Загрузка софта на " + title, text);
+			}
+			else {
+			    inside = true;
+				progress_bar2(title + ": скачивается " + text, "Все загруженные файлы сохраняются в: Рабочий стол");
+			}
+		});
+	}
+</script>
+{% endblock %}
+
+
+{% block header %}
+	{% include 'game_menu2.html' %}
+{% endblock %}
+
+{% block content %}
+<div style="width:1000px;margin:auto;">
+	{% include "dialogs/alert.html" %}
+	
+	<div id="modal_dialog">
+		<div id="dialog_title">Злобный вирус погрыз ваш винт :-)</div>
+		<br />
+		<div id="dialog_progressbar">
+			<div id="dialog_slider">
+			&nbsp;
+			</div>
+		</div>
+		<br />
+		<div id="dialog_footer">Все загруженные файлы сохраняются в: Рабочий стол</div>
+	</div>
+	
+	<br />
+	
+	<div id="rounded_right">
+		<b class="nifty yellow margin2"></b>
+		<b class="nifty yellow margin1"></b>
+		<div id="RightPanel">
+			<span class="black">Выход в сеть:</span> {{game.lan}}<br />
+			<!-- <span class="black">У тебя есть </span> {{game.cool_soft_str}} <span class="black">КРУТОГО СОФТА</span>
+			 -->
+			За закачку крутого софта повышается репутация. 
+			Активность в файлообменных сетях позитивно отражается на вашем опыте.
+			Так что, удачи ;-)
+			<p>
+			<h1>Файлообменные сети:</h1>
+			</p>
+			
+			<table width=100%>
+			{% for item in p2p %}
+				<tr>
+					<td class="black">
+						{{item.title}}
+					</td>
+					<td>
+						<a href='javascript:connect_p2p("upload", "{{item.key}}", "{{item.title}}")'>
+							↑ Закачать
+						</a>
+					</td>
+					<td>
+						<a href='javascript:connect_p2p("download", "{{item.key}}", "{{item.title}}")'>
+							↓ Забрать
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
+		<b class="nifty yellow margin1"></b>
+		<b class="nifty yellow margin2"></b>
+	</div>
+	
+	<div id="rounded_left">
+		<b class="nifty blue margin2"></b>
+		<b class="nifty blue margin1"></b>
+		<div id="about_user">
+			<a href="/game/">
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			</a>
+		</div>
+		<b class="nifty darkblue margin1"></b>
+		<b class="nifty darkblue margin2"></b>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+<div id="dialog_title">
+	Жертва: {{target.user.nickname}}
+</div>
+
+<p>
+{{target.status_str}}, ОС: {{target.os}}{% if target.firewall %},<span class="red"> Обнаружен фаервол!</span>{% endif %}
+</p>
+
+<a id="hack_money" class="big_button" href="#" onclick="Hacking('{{target.key}}', 'money')">► Снять немного денег</a>
+
+<a id="hack_os" class="big_button" href="#" onclick="Hacking('{{target.key}}', 'os')">► Снести ОС</a>
+
+<a id="hack_troyan" class="big_button" href="#" onclick="Hacking('{{target.key}}', 'troyan')">► Запустить трояна</a>
+
+<br />
+<div id="dialog_footer">
+	<a href="#" onclick='$("#modal_dialog").hide();'>Разорвать соединение</a>
+</div>

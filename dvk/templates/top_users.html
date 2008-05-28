@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Зал боевой славы
+{% endblock %}
+
+{% block extrahead%}
+<link rel="stylesheet" href="/static/game.css" />
+
+<style>
+#rounded_left  {width:50px;}
+#about_user    {width:30px;}
+#about_user a {color:white;}
+#about_user a.visited {color:white;}
+
+#rounded_right {width:930px;}
+#RightPanel    {width:910px;}
+</style>
+{% endblock %}
+
+
+{% block header %}
+	&nbsp;
+{% endblock %}
+
+{% block content %}
+<div style="width:1000px;margin:auto;">
+	<br />
+	
+	<div id="rounded_right">
+		<b class="nifty yellow margin2"></b>
+		<b class="nifty yellow margin1"></b>
+		<div id="RightPanel">
+			<h1>Зал боевой славы</h1>
+			<table width=100%>
+			{% for item in top %}
+				<tr>
+					<td class="black">
+						{{forloop.counter}}
+					</td>
+					<td>
+						{{item.user.nickname}}
+					</td>
+					<td>
+						{{item.status_str}}
+					</td>
+					<td style="text-align:center">
+						{{item.xp}}/<span class="{{item.reputation_color}}">{{item.reputation_str}}</span>
+					</td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
+		<b class="nifty yellow margin1"></b>
+		<b class="nifty yellow margin2"></b>
+	</div>
+	
+	<div id="rounded_left">
+		<b class="nifty blue margin2"></b>
+		<b class="nifty blue margin1"></b>
+		<div id="about_user">
+			<a href="/">
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			←<br />
+			</a>
+		</div>
+		<b class="nifty darkblue margin1"></b>
+		<b class="nifty darkblue margin2"></b>
+	</div>
+</div>
+{% endblock %}

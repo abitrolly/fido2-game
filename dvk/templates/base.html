@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+	<title>
+		FIDO 2.0 - 
+		{% block title %}
+		
+		{% endblock %}
+	</title>
+
+	{% include 'header.html' %}
+
+	{% block extrahead %}
+    	
+    {% endblock %}
+</head>
+
+<body>
+<div style="padding:10px;background:white;">
+	<a href="/">
+		<img src="/static/docsslogo.png" style="vertical-align:middle"/>
+		<span style="color:#717171;font-size:3.5em;vertical-align:middle">
+			FIDO 2.0
+		</span>
+	</a>
+	
+	<div style="color:#717171;font-size:1.6em;">
+	Симулятор жизни компьютерщика
+	</div>
+</div>
+
+<div id="Header">
+{% block header %}
+	&nbsp;
+{% endblock %}
+</div>
+
+{% block content %}
+
+{% endblock %}
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-1629437-17");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{user.nickname}}
+{% endblock %}
+
+{% block extrahead%}
+<link rel="stylesheet" href="/static/game.css" />
+<script type='text/javascript' src='/static/game.js'></script>
+
+<script type='text/javascript'>
+	var paused = false;
+	var inside = false;
+	
+	//-------------------------------------------------------------------------
+	$(function() {
+		setInterval("job()", 1000);
+    });
+</script>
+
+<style>
+	a.big_button {color:white;line-height:45px}
+	a:visited.big_button {color:white}
+	a:hover.big_button {color: #d3a126;}
+</style>
+{% endblock %}
+
+
+{% block header %}
+	{% include 'game_menu.html' %}
+{% endblock %}
+
+{% block content %}
+<div style="width:1000px;margin:auto;">
+{% include "dialogs/modal.html" %}
+{% include "dialogs/alert.html" %}
+{% include "dialogs/message.html" %}
+	<br />
+	<div id="rounded_right">
+		<b class="nifty yellow margin2"></b>
+		<b class="nifty yellow margin1"></b>
+		<div id="RightPanel">
+			{% include "ajax/menu_data.html"%}
+		</div>
+		<b class="nifty yellow margin1"></b>
+		<b class="nifty yellow margin2"></b>
+	</div>
+	
+	<div id="rounded_left">
+		<b class="nifty blue margin2"></b>
+		<b class="nifty blue margin1"></b>
+		<div id="about_user">
+			{% include 'ajax/about_user.html'%}
+		</div>
+		<b class="nifty darkblue margin1"></b>
+		<b class="nifty darkblue margin2"></b>
+	</div>
+</div>
+{% endblock %}

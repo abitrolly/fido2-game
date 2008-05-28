@@ -1,0 +1,58 @@
+<h1><a href="javascript:load_data('menu')">Консоль → </a>Апгрейд железа</h1>
+
+<div class="black pointer" onclick="ToggleItems('hard_pc')">
+	<img src="/static/arrow.gif" />
+	Компы и серваки
+</div>
+<div id="hard_pc" style="display:none;">
+	<table width=100%>
+	{% for item in hard_pc %}
+		<tr>
+			<td>
+				<a href="javascript:upgrade('{{item.key}}', {{item.cost}}, '{{item.title}}')">{{item.title}}</a> 
+			</td>
+			<td class="right">
+				${{item.cost}}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class="black pointer" onclick="ToggleItems('hard_hdd')">
+	<img src="/static/arrow.gif" />
+	Винты
+</div>
+<div id="hard_hdd" style="display:none;">
+	<table width=100%>
+	{% for item in hard_hdd %}
+		<tr>
+			<td>
+				<a href="javascript:upgrade('{{item.key}}', {{item.cost}}, '{{item.title}}')">{{item.title}}</a>
+			</td>
+			<td class="right">
+				${{item.cost}}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class="black pointer" onclick="ToggleItems('hard_lan')">
+	<img src="/static/arrow.gif" />
+	Доступ к сети
+</div>
+<div id="hard_lan" style="display:none;">
+	<table width=100%>
+	{% for item in hard_lan %}
+		<tr>
+			<td>
+				<a href="javascript:upgrade('{{item.key}}', {{item.cost}}, '{{item.title}}')">{{item.title}}</a>
+			</td>
+			<td class="right">
+				${{item.cost}}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>

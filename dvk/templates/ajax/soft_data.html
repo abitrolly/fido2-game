@@ -1,0 +1,106 @@
+<h1><a href="javascript:load_data('menu')">Консоль → </a>Установка ОС и софта</h1>
+
+<div class="black pointer" onclick="ToggleItems('soft_os')">
+	<img src="/static/arrow.gif" />
+	ОС (это большой полосатый мух)
+</div>
+<div id="soft_os" style="display:none;">
+	<table width=100%>
+	{% for item in soft_os %}
+		<tr>
+			<td>
+				<a href="javascript:install_soft('{{item.key}}', {{item.need_xp}}, {{item.need_power}}, {{item.cost}}, '{{item.title}}')">{{item.title}}</a> 
+			</td>
+			<td class="right">
+				{{item.size}}Mb
+			</td>
+			<td class="right">
+				${{item.cost}}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class="black pointer" onclick="ToggleItems('soft_soft')">
+	<img src="/static/arrow.gif" />
+	Софт для работы
+</div>
+<div id="soft_soft" style="display:none;">
+	<table width=100%>
+	{% for item in soft_soft %}
+		<tr>
+			<td>
+				<a href="javascript:install_soft('{{item.key}}', {{item.need_xp}}, {{item.need_power}}, {{item.cost}}, '{{item.title}}')">{{item.title}}</a> 
+			</td>
+			<td class="right">
+				{{item.size}}Mb
+			</td>
+			<td class="right">
+				${{item.cost}}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class="black pointer" onclick="ToggleItems('soft_antivirus')">
+	<img src="/static/arrow.gif" />
+	Антивирус
+</div>
+<div id="soft_antivirus" style="display:none;">
+	<table width=100%>
+	{% for item in soft_antivirus %}
+		<tr>
+			<td>
+				<a href="javascript:install_soft('{{item.key}}', {{item.need_xp}}, {{item.need_power}}, {{item.cost}}, '{{item.title}}')">{{item.title}}</a>
+			</td>
+			<td class="right">
+				${{item.cost}}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class="black pointer" onclick="ToggleItems('soft_firewall')">
+	<img src="/static/arrow.gif" />
+	Фаервол (брандмауер)
+</div>
+<div id="soft_firewall" style="display:none;">
+	<table width=100%>
+	{% for item in soft_firewall %}
+		<tr>
+			<td>
+				<a href="javascript:install_soft('{{item.key}}', {{item.need_xp}}, {{item.need_power}}, {{item.cost}}, '{{item.title}}')">{{item.title}}</a>
+			</td>
+			<td class="right">
+				${{item.cost}}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
+<div class="black pointer" onclick="ToggleItems('soft_games')">
+	<img src="/static/arrow.gif" />
+	Игрушки
+</div>
+<div id="soft_games" style="display:none;">
+	<table width=100%>
+	{% for item in soft_games %}
+		<tr>
+			<td>
+				<a href="javascript:install_soft('{{item.key}}', {{item.need_xp}}, {{item.need_power}}, {{item.cost}}, '{{item.title}}')">{{item.title}}</a> 
+			</td>
+			<td class="right">
+				{{item.size}}Mb
+			</td>
+			<td class="right">
+				${{item.cost}}
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+
