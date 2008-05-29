@@ -19,6 +19,8 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404, HttpRespons
 from dvk.compman.models import Game, Hardware, Software, Job, Status, Anekdot
 
 from random import randint
+import datetime
+import time
 
 #------------------------------------------------------------------------------ 
 def game_day_data(request):
@@ -28,13 +30,17 @@ def game_day_data(request):
     
     game_day = int(request.POST['today_is'])
     game.game_day = game_day
+    game.file_exchange -= 1
     
     if game.job:
-        game.fun += randint(-4, 0)
+        game.fun += randint(-7, 0)
         game.money += game.job_salary
+    
     game.fun += randint(-4, 4)
     if game.games:
         game.fun += 3
+    if game.fun > 150:
+        game.fun = 150
     game.cool_soft = game.cool_soft + randint(10, 20)
     
     message = None
@@ -47,17 +53,24 @@ def game_day_data(request):
         game.message = None
     
     viruses = False
-    viruses_title = "По диску прошло стадо слонов!"
-    viruses_text = "И вот что они сказали: где твой антивирус, чувак? ;)"
+    viruses_title = u"По диску прошло стадо слонов!"
+    viruses_text = u"И вот что они сказали: где твой антивирус, чувак? ;)"
     if not game.antivirus:
         # Может - Напали вирусы? ;-)
         if randint(0, 10) > 7:
             viruses = True
-            viruses_title = "По диску прошло стадо слонов!"
-            viruses_text = "И вот что они сказали: где твой антивирус, чувак? ;)"
+            viruses_title = u"По диску прошло стадо слонов!"
+            viruses_text = u"И вот что они сказали: где твой антивирус, чувак? ;)"
     else:
         pass # Может мы от них отбились...
     
+    cur_time = datetime.datetime.now()
+    delta = cur_time - game.tik_tac
+    if delta.seconds < 10:
+        viruses_title = u"Внимание! Обнаружен Читер"
+        viruses_text = u"А сейчас мы тебе, злостный читер, винт отформатируем! Возможно даже циркулем :-D"
+        game = Game.all().filter('user =', user)[0]
+        game.status = u"Читер"
     game.put()
     
     content = {

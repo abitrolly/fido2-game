@@ -19,6 +19,8 @@ from django.http import HttpResponseRedirect, HttpResponse, Http404, HttpRespons
 from dvk.compman.models import Game, Hardware, Software, Job, Status, Anekdot, Relax
 
 from random import randint
+import datetime
+import time
 
 #------------------------------------------------------------------------------ 
 def menu_data(request):
@@ -98,7 +100,9 @@ def upgrade_data(request):
         game.lan_power = item.size
 
     game.money -= item.cost
-    game.xp += item.xp
+    if (game.xp < 128):
+        game.xp += item.xp
+    game.fun += item.cost/10
     game.put()
     
     content = {
@@ -133,7 +137,8 @@ def install_data(request):
         game.firewall_power = item.size
 
     game.money -= item.cost
-    game.xp += item.xp
+    if (game.xp < 128) and (item.what != "games"):
+        game.xp += item.xp
     game.put()
     
     content = {
@@ -168,12 +173,17 @@ def get_p2p_text_data(request):
     user = users.get_current_user()
     game = Game.all().filter('user =', user)[0]
     
+    if game.file_exchange > 5:
+        text = "error" 
+        return HttpResponse(text)
+    
     if randint(1,10) > 7:
         text = "error" 
         return HttpResponse(text)
     
     direction = request.POST['direction']
     soft_size = randint(1, game.cool_soft/10)
+    game.file_exchange += 1
     if direction == "download":
         game.cool_soft += soft_size
         if randint(1,10) > 7:
@@ -214,7 +224,12 @@ def hacking_data(request):
     message = u""
     
     attack = game.xp
-    defence = target.xp + target.firewall_power
+    
+    if randint(1, 7) == 1:
+        defence = 100000
+    else:
+        defence = target.xp + target.firewall_power
+    
     if randint(1, attack) > randint(1, defence):
         if what == 'money':
             target.message = u"Ваш банковский счет был атакован неизвестным хакером!"

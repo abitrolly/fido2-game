@@ -123,6 +123,9 @@ class Game(db.Model):
     lan = db.StringProperty(default=u'---') #'Модем на 2400')
     lan_power = db.IntegerProperty(default=0) # Kbps
     
+    tik_tac = db.DateTimeProperty(auto_now=True)
+    file_exchange = db.IntegerProperty(default=0)
+    
     def __str__(self):
         return "%s - Опыт=%i; Репутация=%i" % (self.user, self.xp, self.reputation)
     

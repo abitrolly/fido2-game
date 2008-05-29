@@ -144,6 +144,9 @@ def files_exchange(request):
                 "logout_url": logout_url,
                }
     
+    if game.lan_power == 0:
+        content["denied"]=True
+    
     return render_to_response("files_exchange.html", content)
 
 #------------------------------------------------------------------------------ 

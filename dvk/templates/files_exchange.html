@@ -45,7 +45,7 @@
 		var text = "";
 		count = count + 1;
 		if (count > 5) {
-		    alert_bar("Ошибка соединения!", "Сервер " + title + " временно недоступен.");
+		    alert_bar("", "Может хватит закачивать старое барахло? Ато еще мопед перегреется? ;-)");
 			return;
         }
         
@@ -102,32 +102,36 @@
 			<span class="black">Выход в сеть:</span> {{game.lan}}<br />
 			<!-- <span class="black">У тебя есть </span> {{game.cool_soft_str}} <span class="black">КРУТОГО СОФТА</span>
 			 -->
-			За закачку крутого софта повышается репутация. 
-			Активность в файлообменных сетях позитивно отражается на вашем опыте.
-			Так что, удачи ;-)
-			<p>
-			<h1>Файлообменные сети:</h1>
-			</p>
-			
-			<table width=100%>
-			{% for item in p2p %}
-				<tr>
-					<td class="black">
-						{{item.title}}
-					</td>
-					<td>
-						<a href='javascript:connect_p2p("upload", "{{item.key}}", "{{item.title}}")'>
-							↑ Закачать
-						</a>
-					</td>
-					<td>
-						<a href='javascript:connect_p2p("download", "{{item.key}}", "{{item.title}}")'>
-							↓ Забрать
-						</a>
-					</td>
-				</tr>
-			{% endfor %}
-			</table>
+			{% if denied %}
+			   У меня нет модема, но есть воображаемый друг. И иногда я даже слышу голоса из розетки...
+			{% else %}
+                За закачку крутого софта повышается репутация. 
+    			Активность в файлообменных сетях позитивно отражается на вашем опыте.
+    			Так что, удачи ;-)
+    			<p>
+    			<h1>Файлообменные сети:</h1>
+    			</p>
+    			
+    			<table width=100%>
+    			{% for item in p2p %}
+    				<tr>
+    					<td class="black">
+    						{{item.title}}
+    					</td>
+    					<td>
+    						<a href='javascript:connect_p2p("upload", "{{item.key}}", "{{item.title}}")'>
+    							↑ Закачать
+    						</a>
+    					</td>
+    					<td>
+    						<a href='javascript:connect_p2p("download", "{{item.key}}", "{{item.title}}")'>
+    							↓ Забрать
+    						</a>
+    					</td>
+    				</tr>
+    			{% endfor %}
+    			</table>
+			{% endif %}
 		</div>
 		<b class="nifty yellow margin1"></b>
 		<b class="nifty yellow margin2"></b>

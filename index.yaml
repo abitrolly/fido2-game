@@ -16,7 +16,7 @@ indexes:
   - name: xp
     direction: desc
 
-# Used 9 times in query history.
+# Used 18 times in query history.
 - kind: Hardware
   properties:
   - name: what
@@ -28,13 +28,13 @@ indexes:
   - name: what
   - name: size
 
-# Used 12 times in query history.
+# Used 30 times in query history.
 - kind: Software
   properties:
   - name: what
   - name: cost
 
-# Used 8 times in query history.
+# Used 20 times in query history.
 - kind: Software
   properties:
   - name: what
